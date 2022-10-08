@@ -3,6 +3,12 @@
 def get_urls(infile)
     return list_urls
 
+def harvard(harvard_url)
+    return profs_harvard
+
+def duke(duke_url)
+    return profs_duke
+
 def get_profs(url)
     return profs
 
