@@ -31,6 +31,30 @@ def scrape_boston():
 
     return output
 
+def scrape_harvard():
+    """Takes the harvard faculty url and returns faculty name and their roles."""
+    page1 = get_soup("https://economics.harvard.edu/faculty")
+    div_tag = page1.find_all("div", id = "box-1592918309-page")[0]
+    profile = div_tag.find_all("div", class_="person-teaser-wrapper")
+
+    output = []
+    for n in range(len(profile)):
+        name = profile[n].find_all("a")[0].contents[0]
+        job = profile[n].find_all("div", class_="field-item even")[0].contents[0]
+        output.append([name,job])
+
+    page2 = get_soup("https://economics.harvard.edu/faculty?sv_list_box_delta=1592918309&pager_id=0&destination=node/1314266&page=1")
+    div_tag2 = page2.find_all("div", id = "box-1592918309-page")[0]
+    profile2 = div_tag2.find_all("div", class_="person-teaser-wrapper")
+
+    for n in range(len(profile2)):
+        name = profile2[n].find_all("a")[0].contents[0]
+        job = profile2[n].find_all("div", class_="field-item even")[0].contents[0]
+        output.append([name,job])
+
+    return output
+
+
 
 def scrape_all():
     """
@@ -42,12 +66,6 @@ def scrape_all():
     princeton = scrape_princeton()
     boston_u = scrape_boston()
 
-    output = princeton + boston_u
+    output = princeton + boston_u + harvard
 
-    return None
-
-
-if __name__ == "__main__":
-
-
-    scrape_all()
+    return output
