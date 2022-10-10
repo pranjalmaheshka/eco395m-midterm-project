@@ -18,6 +18,7 @@ def scrape_princeton():
 
 
 def scrape_boston():
+    """Takes the Boston University faculty url and returns faculty name and their roles."""
     soup = get_soup("https://www.bu.edu/econ/people/faculty/")
     profile = soup.find_all("ul", class_="profile-listing profile-format-basic")[0]
     li_tag = profile.find_all("li")
@@ -32,11 +33,17 @@ def scrape_boston():
 
 
 def scrape_all():
+    """
+    Scrapes all universities examined, returning a list of lists containing faculty's name and their role.
+
+    example output:
+    output = [['Jane Doe', 'Professor'], ['John Smith', 'Associate Professor'], ...]
+    """
     princeton = scrape_princeton()
     boston_u = scrape_boston()
 
     output = princeton + boston_u
-    print(output)
+
     return None
 
 
