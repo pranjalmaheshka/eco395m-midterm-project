@@ -31,26 +31,22 @@ def scrape_boston():
 
     return output
 
+
 def scrape_harvard():
-    """Takes the harvard faculty url and returns faculty name and their roles."""
-    page1 = get_soup("https://economics.harvard.edu/faculty")
-    div_tag = page1.find_all("div", id = "box-1592918309-page")[0]
-    profile = div_tag.find_all("div", class_="person-teaser-wrapper")
+    urls = ["https://economics.harvard.edu/faculty","https://economics.harvard.edu/faculty?sv_list_box_delta=1592918309&pager_id=0&destination=node/1314266&page=1"]
+    total = []
+    for link in urls:
+        page = get_soup(link)
+        div_tag = page.find_all("div", id = "box-1592918309-page")[0]
+        profile_soup = div_tag.find_all("div", class_="person-teaser-wrapper")
+        total.append(profile_soup)
 
     output = []
-    for n in range(len(profile)):
-        name = profile[n].find_all("a")[0].contents[0]
-        job = profile[n].find_all("div", class_="field-item even")[0].contents[0]
-        output.append([name,job])
-
-    page2 = get_soup("https://economics.harvard.edu/faculty?sv_list_box_delta=1592918309&pager_id=0&destination=node/1314266&page=1")
-    div_tag2 = page2.find_all("div", id = "box-1592918309-page")[0]
-    profile2 = div_tag2.find_all("div", class_="person-teaser-wrapper")
-
-    for n in range(len(profile2)):
-        name = profile2[n].find_all("a")[0].contents[0]
-        job = profile2[n].find_all("div", class_="field-item even")[0].contents[0]
-        output.append([name,job])
+    for url in total:
+        for n in range(len(url)):
+            name = url[n].find_all("a")[0].contents[0]
+            job = url[n].find_all("div", class_="field-item even")[0].contents[0]
+            output.append([name,job])
 
     return output
 
