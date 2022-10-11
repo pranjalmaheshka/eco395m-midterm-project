@@ -2,7 +2,7 @@ from common import get_soup
 
 
 def scrape_princeton():
-    """Takes the princeton faculty url and returns faculty name and their roles."""
+    """Takes the princeton faculty url and returns faculty name and their roles in  a list of lists."""
 
     soup = get_soup("https://economics.princeton.edu/people/")
     posts_tag = soup.find_all("div", class_="posts")[0]
@@ -18,7 +18,7 @@ def scrape_princeton():
 
 
 def scrape_boston():
-    """Takes the Boston University faculty url and returns faculty name and their roles."""
+    """Takes the Boston University faculty url and returns faculty name and their roles in  a list of lists."""
     soup = get_soup("https://www.bu.edu/econ/people/faculty/")
     profile = soup.find_all("ul", class_="profile-listing profile-format-basic")[0]
     li_tag = profile.find_all("li")
@@ -33,6 +33,7 @@ def scrape_boston():
 
 
 def scrape_harvard():
+    """Takes the harvard faculty urls and returns faculty name and their roles in  a list of lists."""
     urls = ["https://economics.harvard.edu/faculty","https://economics.harvard.edu/faculty?sv_list_box_delta=1592918309&pager_id=0&destination=node/1314266&page=1"]
     total = []
     for link in urls:
@@ -47,6 +48,24 @@ def scrape_harvard():
             name = url[n].find_all("a")[0].contents[0]
             job = url[n].find_all("div", class_="field-item even")[0].contents[0]
             output.append([name,job])
+
+    return output
+
+
+def scrape_utaustin():
+    """Takes the UT Austin faculty urls and returns faculty name and their roles in  a list of lists."""
+    url = "https://catalog.utexas.edu/undergraduate/liberal-arts/faculty/"
+    soup = get_soup(url)
+    div_tag = soup.find_all("div", class_="facultylist")[0]
+    profiles = div_tag.find_all("p", class_="faculty_entry")
+
+    output = []
+    for n in range(len(profiles)):
+        dept = profiles[n].find_all("span", class_="faculty_dept")[0].contents[0]
+        if "Economics" in dept:
+            name = profiles[n].find_all("span", class_="faculty_name")[0].contents[0]
+            job = profiles[n].find_all("span", class_="faculty_title")[0].contents[0]
+            output.append([name, job])
 
     return output
 
