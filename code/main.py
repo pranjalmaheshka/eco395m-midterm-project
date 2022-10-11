@@ -19,12 +19,13 @@ def get_data():
     '''Getting a final data as lists of lists and converting it to a Pandas df.'''
     
     raw_data = scrape_all()
+    
     # send raw data to h-index file and add info
 
     raw_df = pd.DataFrame(raw_data, columns = ['University', 'Professor', "Title"])
     
     # final df needs to have relevant title + Google Scholar info
-    
+
     #print(raw_df)    
 
 get_data()
