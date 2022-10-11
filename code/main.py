@@ -1,30 +1,49 @@
 ## Main file
+import os
+import pandas as pd
 
-def get_urls(infile)
-    return list_urls
 
-def harvard(harvard_url)
-    return profs_harvard
+from common import get_soup
 
-def duke(duke_url)
-    return profs_duke
+from scrape_pages import scrape_all
 
-def get_profs(url)
-    return profs
+colleges = [
+    'harvard','princeton','uchicago',
+    'stanford','pennstate','yale',
+    'northwestern','duke','umd',
+    'hopkins','bu','wisconsin','uta'
+    ]
 
-def get_prof_info(prof)
-    return prof_info
 
-def get_h_index(prof_info)
-    return prof_h_index
+def get_data():
+    '''Getting a final data as lists of lists and converting it to a Pandas df.'''
+    
+    raw_data = scrape_all()
+    
+    # send raw data to h-index file and add info
 
-def tabulate_data(prof_info)
+    raw_df = pd.DataFrame(raw_data, columns = ['University', 'Professor', "Title"])
+    
+    # final df needs to have relevant title + Google Scholar info
+
+    #print(raw_df)    
+
+get_data()
+
+def get_h_index(prof_info):
+
     return None
 
+def tabulate_data(prof_info):
+    return None
+
+
+'''
 def run_main()
     return None
 
 if __name__ == "__main__":
     run)main()
     # code for testing
-    
+'''
+
