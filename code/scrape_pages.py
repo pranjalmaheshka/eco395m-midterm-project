@@ -13,7 +13,7 @@ def scrape_princeton():
     for n in range(len(people_tag)):
         name = people_tag[n].find_all("h3")[0].contents[0]
         job = people_tag[n].find_all("p", class_="job")[0].contents[0]
-        output.append([name,job])
+        output.append([school,name,job])
 
     return output
 
@@ -30,7 +30,7 @@ def scrape_boston():
     for n in range(len(li_tag)):
         name = li_tag[n].find_all("h6")[0].contents[0]
         job = li_tag[n].find_all("p")[0].contents[0]
-        output.append([name,job])
+        output.append([school,name,job])
 
     return output
 
@@ -51,7 +51,7 @@ def scrape_harvard():
         for n in range(len(url)):
             name = url[n].find_all("a")[0].contents[0]
             job = url[n].find_all("div", class_="field-item even")[0].contents[0]
-            output.append([name,job])
+            output.append([school,name,job])
 
     return output
 
@@ -70,7 +70,7 @@ def scrape_utaustin():
         if "Economics" in dept:
             name = profiles[n].find_all("span", class_="faculty_name")[0].contents[0]
             job = profiles[n].find_all("span", class_="faculty_title")[0].contents[0]
-            output.append([name, job])
+            output.append([school,name, job])
 
     return output
 
@@ -87,7 +87,7 @@ def scrape_uchicago():
     for n in range(41):
         name = profiles[n].find_all("a")[0].contents[0]
         job = profiles[n].find_all("p", class_="title")[0].contents[0].lstrip().rstrip()
-        output.append([name,job])
+        output.append([school,name,job])
 
     return output
 
