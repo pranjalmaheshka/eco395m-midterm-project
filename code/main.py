@@ -1,26 +1,11 @@
 ## Main file
 import os
-import bs4 as BeautifulSoup
 import pandas as pd
-import requests
+
 
 from common import get_soup
 
-'''
-from scrape_pages import harvard
-from scrape_pages import princeton
-from scrape_pages import uchicago
-from scrape_pages import stanford
-from scrape_pages import pennstate
-from scrape_pages import yale
-from scrape_pages import northwestern
-from scrape_pages import duke
-from scrape_pages import umd
-from scrape_pages import hopkins
-from scrape_pages import bu
-from scrape_pages import wisconsin
-from scrape_pages import uta
-'''
+from scrape_pages import scrape_all
 
 colleges = [
     'harvard','princeton','uchicago',
@@ -30,18 +15,25 @@ colleges = [
     ]
 
 
-def get_data()
+def get_data():
     '''Getting a final data as lists of lists and converting it to a Pandas df.'''
     
-    raw_data = []
+    raw_data = scrape_all()
+    # send raw data to h-index file and add info
 
-    #for college in colleges:
-    #    raw_data.append(college)
+    raw_df = pd.DataFrame(raw_data, columns = ['University', 'Professor', "Title"])
+    
+    # final df needs to have relevant title + Google Scholar info
+    
+    #print(raw_df)    
 
-def get_h_index(prof_info)
-    return prof_h_index
+get_data()
 
-def tabulate_data(prof_info)
+def get_h_index(prof_info):
+
+    return None
+
+def tabulate_data(prof_info):
     return None
 
 
