@@ -1,6 +1,5 @@
 from common import get_soup
 
-
 def scrape_princeton():
     """Takes the princeton faculty url and returns faculty name and their roles in  a list of lists."""
 
@@ -92,13 +91,12 @@ def scrape_uchicago():
     return output
 
 
-
 def scrape_all():
     """
     Scrapes all universities examined, returning a list of lists containing faculty's name and their role.
 
     example output:
-    output = [['Jane Doe', 'Professor'], ['John Smith', 'Associate Professor'], ...]
+    output = [['University A', 'Jane Doe', 'Professor'], ['University A', 'John Smith', 'Associate Professor'], ...]
     """
     princeton = scrape_princeton()
     boston_u = scrape_boston()

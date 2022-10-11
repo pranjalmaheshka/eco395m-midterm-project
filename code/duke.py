@@ -31,20 +31,18 @@ def duke():
     duke_profnames = []
     duke_proftitles = []
     
-    i = 0
-    while i<4:
-        duke_profs = duke_soups()[i]
-        i+=1
-        for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
-            for link in tag.find_all("a", href = True):
-                duke_profurls.append(link['href'])
 
-        for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
-            for name in tag.find_all('div', class_='h4'):
-                duke_profnames.append(name.a.text)
-        
-        for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-appointment-titles"):
-            duke_proftitles.append(tag.text)
+    duke_profs = get_soup(duke_url1)
+    for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
+        for link in tag.find_all("a", href = True):
+            duke_profurls.append(link['href'])
+
+    for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
+        for name in tag.find_all('div', class_='h4'):
+            duke_profnames.append(name.a.text)
+    
+    for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-appointment-titles"):
+        duke_proftitles.append(tag.text)
     
     duke = []
     for i in range(len(duke_profnames)):
@@ -55,7 +53,4 @@ def duke():
         duke.append(temp)
 
     return duke
-
-#duke_profurls, duke_profnames, duke_proftitles = get_duke_data()
-#print(f'Len of urls {len(duke_profurls)}, len of {len(duke_profnames)}, and len of {len(duke_proftitles)}')
 

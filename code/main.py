@@ -4,21 +4,23 @@ import bs4 as BeautifulSoup
 import pandas as pd
 import requests
 
-from common import get_soup()
+from common import get_soup
 
-from harvard import harvard
-from princeton import princeton
-from uchicago import uchicago
-from stanford import stanford
-from pennstate import pennstate
-from yale import yale
-from northwestern import northwestern
-from duke import duke
-from umd import umd
-from hopkins import hopkins
-from bu import bu
-from wisconsin import wisconsin
-from uta import uta
+'''
+from scrape_pages import harvard
+from scrape_pages import princeton
+from scrape_pages import uchicago
+from scrape_pages import stanford
+from scrape_pages import pennstate
+from scrape_pages import yale
+from scrape_pages import northwestern
+from scrape_pages import duke
+from scrape_pages import umd
+from scrape_pages import hopkins
+from scrape_pages import bu
+from scrape_pages import wisconsin
+from scrape_pages import uta
+'''
 
 colleges = [
     'harvard','princeton','uchicago',
@@ -27,8 +29,12 @@ colleges = [
     'hopkins','bu','wisconsin','uta'
     ]
 
-def tab_data()
+
+def get_data()
+    '''Getting a final data as lists of lists and converting it to a Pandas df.'''
+    
     raw_data = []
+
     #for college in colleges:
     #    raw_data.append(college)
 
