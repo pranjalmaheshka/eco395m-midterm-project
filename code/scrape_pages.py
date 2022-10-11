@@ -143,6 +143,40 @@ def scrape_northwestern():
         northwestern.append(temp)
     return northwestern 
 
+def scrape_stanford():
+     """Takes the Stanford University faculty url and returns faculty name and their roles in  a list of lists."""
+
+    url = "https://economics.stanford.edu/people/faculty"
+    soup = get_soup(url)
+        
+    names = soup.find_all("span", {"class": "field-content hb-subtitle"})
+
+    facnames = []
+
+    for i in names: 
+        allfac = i.a.text 
+        facnames.append(allfac)
+
+    titles = soup.find_all("div", {"class": "views-field views-field-field-hs-person-title"}) 
+
+    factitles = []
+
+    for i in titles: 
+        alltitles = i.div.text 
+        factitles.append(alltitles)
+
+    stanford = []
+    school = "Stanford University"
+    list_stanford = len(factitles)
+
+    for i in range(list_stanford): 
+        temp = []
+        temp.append(school)
+        temp.append(facnames[i])
+        temp.append(factitles[i])
+        stanford.append(temp)
+
+    return stanford
 
 def scrape_all():
     """
@@ -158,7 +192,8 @@ def scrape_all():
     uchicago = scrape_uchicago()
     duke = scrape_duke()
     northwestern = scrape_northwestern()
+    stanford = scrape_stanford()
 
-    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern
+    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford
 
     return output
