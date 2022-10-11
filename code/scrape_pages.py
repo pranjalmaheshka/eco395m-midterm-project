@@ -80,7 +80,9 @@ def scrape_all():
     """
     princeton = scrape_princeton()
     boston_u = scrape_boston()
+    harvard = scrape_harvard()
+    utaustin = scrape_utaustin()
 
-    output = princeton + boston_u + harvard
+    output = princeton + boston_u + harvard + utaustin
 
     return output
