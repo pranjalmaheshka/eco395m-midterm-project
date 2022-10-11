@@ -90,6 +90,33 @@ def scrape_uchicago():
 
     return output
 
+def scrape_duke():
+    """Takes the Duke University faculty url and returns faculty name and their roles in  a list of lists."""
+    
+    duke_url1 = 'https://econ.duke.edu/people/other-faculty/regular-rank-faculty'
+    duke_profs = get_soup(duke_url1) # Regular rank faculty
+    
+    duke_profurls = []
+    duke_profnames = []
+    duke_proftitles = []
+    
+    for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
+        for name in tag.find_all('div', class_='h4'):
+            duke_profnames.append(name.a.text)
+    
+    for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-appointment-titles"):
+        duke_proftitles.append(tag.text)
+    
+    duke = []
+    for i in range(len(duke_profnames)):
+        temp=[]
+        temp.append("Duke University")
+        temp.append(duke_profnames[i])
+        temp.append(duke_proftitles[i])
+        duke.append(temp)
+
+    return duke
+
 
 def scrape_all():
     """
@@ -103,7 +130,8 @@ def scrape_all():
     harvard = scrape_harvard()
     utaustin = scrape_utaustin()
     uchicago = scrape_uchicago()
+    duke = scrape_duke()
 
-    output = princeton + boston_u + harvard + utaustin + uchicago
+    output = princeton + boston_u + harvard + utaustin + uchicago + duke
 
     return output
