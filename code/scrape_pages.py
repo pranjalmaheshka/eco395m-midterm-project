@@ -213,6 +213,39 @@ def scrape_nyu():
 
     nyu
 
+
+def Columbia():
+    soup= get_soup("https://econ.columbia.edu/faculty/")
+    div_tag= soup.find_all("div", class_="tshowcase-isotope-wrap")[0]
+    profiles= div_tag.find_all("div", class_= "tshowcase-box-info ts-align-left")
+    school= "Columbia University"
+    output=[]
+    for n in range(len(profiles)):
+        names = profiles[n].find_all("div", class_= "tshowcase-box-title")[0].contents[0]
+        title = profiles[n].find_all("div", class_="tshowcase-single-position") [0].contents[0]
+        output.append([school,names,title])
+    
+    return output
+
+def Brown():
+    school="Brown University"
+    soup= get_soup("https://economics.brown.edu/people/faculty")
+    ul_tag = soup.find_all("ul", class_ = "people_items component_items")[0]
+    profiles= ul_tag.find_all("li")
+
+    output=[]
+    for n in range(len(profiles)):
+
+        title = profiles[n].find_all("div", class_="people_item_title")[0].contents[0]
+        title = title.replace("\n","").strip()
+        name = profiles[n].find_all("h3",class_ ="people_item_name")[0].find_all("a")[0].contents[0]
+        name = name.replace("\n","").strip()
+        output.append([school,name,title])
+
+    return output
+
+
+
 def scrape_all():
     """
     Scrapes all universities examined, returning a list of lists containing faculty's name and their role.
@@ -229,7 +262,9 @@ def scrape_all():
     northwestern = scrape_northwestern()
     stanford = scrape_stanford()
     nyu = scrape_nyu()
+    columbia = Columbia()
+    brown = Brown()
 
-    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu
+    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu + columbia + brown
 
     return output
