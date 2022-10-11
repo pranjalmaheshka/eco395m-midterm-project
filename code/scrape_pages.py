@@ -117,6 +117,32 @@ def scrape_duke():
 
     return duke
 
+def scrape_northwestern():
+    """Takes the Northwestern University faculty url and returns faculty name and their roles in  a list of lists."""
+    
+    nw_url = 'https://economics.northwestern.edu/people/faculty/index.html'
+    nw_profs = get_soup(nw_url) # Faculty (minus Emeritus + Instructional)
+    
+    nw_profnames = []
+    nw_proftitles = []
+
+    for tag in nw_profs.find_all("div", class_ = "people-content"):
+        for name in tag.find_all('h3'):
+            nw_profnames.append(name.a.text)
+
+    for tag in nw_profs.find_all("div", class_ = "people-content"):
+        for title in tag.find_all('p', class_="title"):      
+            nw_proftitles.append(title.text)
+
+    northwestern = []
+    for i in range(len(nw_profnames)):
+        temp=[]
+        temp.append("Northwestern University")
+        temp.append(nw_profnames[i])
+        temp.append(nw_proftitles[i])
+        northwestern.append(temp)
+    return northwestern 
+
 
 def scrape_all():
     """
@@ -131,7 +157,8 @@ def scrape_all():
     utaustin = scrape_utaustin()
     uchicago = scrape_uchicago()
     duke = scrape_duke()
+    northwestern = scrape_northwestern()
 
-    output = princeton + boston_u + harvard + utaustin + uchicago + duke
+    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern
 
     return output
