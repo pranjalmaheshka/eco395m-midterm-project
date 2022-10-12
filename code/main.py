@@ -25,6 +25,20 @@ def clean_titles():
         title = prof[2].lower()
         if "research assistant professor" in title:
             continue
+        elif "research professor" in title:
+            continue
+        elif "clinical" in title:
+            continue
+        elif "lecturer" in title:
+            continue
+        elif "emeritus" in title:
+            continue
+        elif "adjunct" in title:
+            continue
+        elif "visiting" in title:
+            continue
+        elif "professor of instruction" in title:
+            continue
         elif "associate professor" in title:
             output.append([prof[0],prof[1],"Associate Professor"])
         elif "assistant professor" in title:
@@ -35,6 +49,7 @@ def clean_titles():
             continue
 
     return output
+
 
 
 def get_data():
@@ -95,15 +110,15 @@ def get_h_index():
             faculty_info.append(individual_info)
 
         elif found_indicator == 0:
-            individual_info.append("") 
-            individual_info.append("") 
+            individual_info.append("")
+            individual_info.append("")
 
-            individual_info.append("") 
+            individual_info.append("")
             individual_info.append("")
             faculty_info.append(individual_info)
 
     for i in faculty_info:
-        print(i)        
+        print(i)
 
 def tabulate_data(prof_info):
     return None
@@ -112,7 +127,7 @@ get_h_index()
 
 '''
 def run_main()
-    
+
 
 if __name__ == "__main__":
     run)main()
