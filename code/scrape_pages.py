@@ -3,7 +3,7 @@ from common import get_soup
 def scrape_princeton():
     """Takes the princeton faculty url and returns faculty name and their roles in  a list of lists."""
 
-    school = "Princeton University"
+    school = "Princeton"
     soup = get_soup("https://economics.princeton.edu/people/")
     posts_tag = soup.find_all("div", class_="posts")[0]
     people_tag = posts_tag.find_all("div", class_="person")
@@ -44,7 +44,7 @@ def scrape_harvard():
         profile_soup = div_tag.find_all("div", class_="person-teaser-wrapper")
         total.append(profile_soup)
 
-    school = "Harvard University"
+    school = "Harvard"
     output = []
     for url in total:
         for n in range(len(url)):
@@ -62,7 +62,7 @@ def scrape_utaustin():
     div_tag = soup.find_all("div", class_="facultylist")[0]
     profiles = div_tag.find_all("p", class_="faculty_entry")
 
-    school = "University of Texas at Austin"
+    school = "UT Austin"
     UT_faculty = []
     for n in range(len(profiles)):
         dept = profiles[n].find_all("span", class_="faculty_dept")[0].contents[0]
@@ -122,7 +122,7 @@ def scrape_duke():
     duke = []
     for i in range(len(duke_profnames)):
         temp=[]
-        temp.append("Duke University")
+        temp.append("Duke")
         temp.append(duke_profnames[i])
         temp.append(duke_proftitles[i])
         duke.append(temp)
@@ -149,7 +149,7 @@ def scrape_northwestern():
     northwestern = []
     for i in range(len(nw_profnames)):
         temp=[]
-        temp.append("Northwestern University")
+        temp.append("Northwestern")
         temp.append(nw_profnames[i])
         temp.append(nw_proftitles[i])
         northwestern.append(temp)
@@ -178,7 +178,7 @@ def scrape_stanford():
         factitles.append(alltitles)
 
     stanford = []
-    school = "Stanford University"
+    school = "Stanford"
     list_stanford = len(factitles)
 
     for i in range(list_stanford):
@@ -230,7 +230,7 @@ def scrape_columbia():
     soup= get_soup("https://econ.columbia.edu/faculty/")
     div_tag= soup.find_all("div", class_="tshowcase-isotope-wrap")[0]
     profiles= div_tag.find_all("div", class_= "tshowcase-box-info ts-align-left")
-    school= "Columbia University"
+    school= "Columbia"
     output=[]
     for n in range(len(profiles)):
         names = profiles[n].find_all("div", class_= "tshowcase-box-title")[0].contents[0]
@@ -240,7 +240,7 @@ def scrape_columbia():
     return output
 
 def scrape_brown():
-    school="Brown University"
+    school="Brown"
     soup= get_soup("https://economics.brown.edu/people/faculty")
     ul_tag = soup.find_all("ul", class_ = "people_items component_items")[0]
     profiles= ul_tag.find_all("li")
