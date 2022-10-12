@@ -287,10 +287,8 @@ def scrape_yale():
     yale_faculty = []
 
     for i in range(0,4): #There are 4 pages of faculty
-        html = requests.get("https://economics.yale.edu/people-economics?viewsreference[enabled_settings][argument]=argument&person_type=2&interest=All&page=" + str(i)).text
-        soup = BeautifulSoup(html, "html.parser")
+        soup = get_soup("https://economics.yale.edu/people-economics?viewsreference[enabled_settings][argument]=argument&person_type=2&interest=All&page=" + str(i))
 
-        
         faculty_name = soup.find_all("div", class_="node-teaser__heading")
         faculty_title = soup.find_all("div", class_="node-teaser__professional-title")
 
