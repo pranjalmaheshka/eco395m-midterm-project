@@ -85,28 +85,29 @@ def scrape_uchicago():
     output=[]
     for n in range(41):
         name = profiles[n].find_all("a")[0].contents[0]
-        job = profiles[n].find_all("p", class_="title")[0].contents[0].lstrip().rstrip()
+        job = profiles[n].find_all("p", class_="title")[0].contents[0].strip()
         output.append([school,name,job])
 
     return output
 
+
 def scrape_duke():
     """Takes the Duke University faculty url and returns faculty name and their roles in  a list of lists."""
-    
+
     duke_url1 = 'https://econ.duke.edu/people/other-faculty/regular-rank-faculty'
     duke_profs = get_soup(duke_url1) # Regular rank faculty
-    
+
     duke_profurls = []
     duke_profnames = []
     duke_proftitles = []
-    
+
     for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
         for name in tag.find_all('div', class_='h4'):
             duke_profnames.append(name.a.text)
-    
+
     for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-appointment-titles"):
         duke_proftitles.append(tag.text)
-    
+
     duke = []
     for i in range(len(duke_profnames)):
         temp=[]
@@ -119,10 +120,10 @@ def scrape_duke():
 
 def scrape_northwestern():
     """Takes the Northwestern University faculty url and returns faculty name and their roles in  a list of lists."""
-    
+
     nw_url = 'https://economics.northwestern.edu/people/faculty/index.html'
     nw_profs = get_soup(nw_url) # Faculty (minus Emeritus + Instructional)
-    
+
     nw_profnames = []
     nw_proftitles = []
 
@@ -131,7 +132,7 @@ def scrape_northwestern():
             nw_profnames.append(name.a.text)
 
     for tag in nw_profs.find_all("div", class_ = "people-content"):
-        for title in tag.find_all('p', class_="title"):      
+        for title in tag.find_all('p', class_="title"):
             nw_proftitles.append(title.text)
 
     northwestern = []
@@ -141,7 +142,7 @@ def scrape_northwestern():
         temp.append(nw_profnames[i])
         temp.append(nw_proftitles[i])
         northwestern.append(temp)
-    return northwestern 
+    return northwestern
 
 def scrape_stanford():
     """Takes the Stanford University faculty url and returns faculty name and their roles in  a list of lists."""
@@ -153,23 +154,23 @@ def scrape_stanford():
 
     facnames = []
 
-    for i in names: 
-        allfac = i.a.text 
+    for i in names:
+        allfac = i.a.text
         facnames.append(allfac)
 
-    titles = soup.find_all("div", {"class": "views-field views-field-field-hs-person-title"}) 
+    titles = soup.find_all("div", {"class": "views-field views-field-field-hs-person-title"})
 
     factitles = []
 
-    for i in titles: 
-        alltitles = i.div.text 
+    for i in titles:
+        alltitles = i.div.text
         factitles.append(alltitles)
 
     stanford = []
     school = "Stanford University"
     list_stanford = len(factitles)
 
-    for i in range(list_stanford): 
+    for i in range(list_stanford):
         temp = []
         temp.append(school)
         temp.append(facnames[i])
@@ -188,22 +189,22 @@ def scrape_nyu():
 
     facnames = []
 
-    for i in names: 
-        allfac = i.string 
+    for i in names:
+        allfac = i.string
         facnames.append(allfac)
 
     titles = soup.find_all("div", {"class": "book-box__author"})
     factitles = []
 
-    for i in titles: 
-        alltitles = i.string.lstrip().rstrip()
+    for i in titles:
+        alltitles = i.string.strip()
         factitles.append(alltitles)
 
     nyu = []
     school = "New York University"
     list_nyu = len(factitles)
 
-    for i in range(list_nyu): 
+    for i in range(list_nyu):
         temp = []
         temp.append(school)
         temp.append(facnames[i])
@@ -214,7 +215,7 @@ def scrape_nyu():
 
 
 
-def Columbia():
+def scrape_columbia():
     soup= get_soup("https://econ.columbia.edu/faculty/")
     div_tag= soup.find_all("div", class_="tshowcase-isotope-wrap")[0]
     profiles= div_tag.find_all("div", class_= "tshowcase-box-info ts-align-left")
@@ -224,10 +225,10 @@ def Columbia():
         names = profiles[n].find_all("div", class_= "tshowcase-box-title")[0].contents[0]
         title = profiles[n].find_all("div", class_="tshowcase-single-position") [0].contents[0]
         output.append([school,names,title])
-    
+
     return output
 
-def Brown():
+def scrape_brown():
     school="Brown University"
     soup= get_soup("https://economics.brown.edu/people/faculty")
     ul_tag = soup.find_all("ul", class_ = "people_items component_items")[0]
@@ -262,9 +263,9 @@ def scrape_all():
     northwestern = scrape_northwestern()
     stanford = scrape_stanford()
     nyu = scrape_nyu()
-    columbia = Columbia()
-    brown = Brown()
+    columbia = scrape_columbia()
+    brown = scrape_brown()
 
     output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu + columbia + brown
 
-    return output 
+    return output
