@@ -215,10 +215,11 @@ def scrape_nyu():
 
 
 def Columbia():
+    """Takes the columbia faculty url and returns faculty name and their roles in  a list of lists."""
     soup= get_soup("https://econ.columbia.edu/faculty/")
     div_tag= soup.find_all("div", class_="tshowcase-isotope-wrap")[0]
     profiles= div_tag.find_all("div", class_= "tshowcase-box-info ts-align-left")
-    school= "Columbia University"
+    school= "Columbia"
     output=[]
     for n in range(len(profiles)):
         names = profiles[n].find_all("div", class_= "tshowcase-box-title")[0].contents[0]
@@ -228,7 +229,7 @@ def Columbia():
     return output
 
 def Brown():
-    school="Brown University"
+    school="Brown"
     soup= get_soup("https://economics.brown.edu/people/faculty")
     ul_tag = soup.find_all("ul", class_ = "people_items component_items")[0]
     profiles= ul_tag.find_all("li")
