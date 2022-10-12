@@ -12,6 +12,11 @@ colleges = [
     ]
 
 def clean_titles():
+    """
+    Runs through the scraped data and filters through faculty titles.
+    Keep "Professor", "Associate Professor", and "Assistant Professor" titles only.
+    Returns a list of lists, which includes ["school", "prof's name", "title"]
+    """
     data = scrape_all()
 
     output = []
@@ -38,7 +43,7 @@ def get_data():
 
     # send raw data to h-index file and add info
 
-    raw_df = pd.DataFrame(raw_data, columns = ['University', 'Professor', 'Title'"'])
+    raw_df = pd.DataFrame(raw_data, columns = ['University', 'Professor', 'Title'])
 
     # final df needs to have relevant title + Google Scholar info
 
