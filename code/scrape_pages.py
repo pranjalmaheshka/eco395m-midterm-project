@@ -63,15 +63,26 @@ def scrape_utaustin():
     profiles = div_tag.find_all("p", class_="faculty_entry")
 
     school = "University of Texas at Austin"
-    output = []
+    UT_faculty = []
     for n in range(len(profiles)):
         dept = profiles[n].find_all("span", class_="faculty_dept")[0].contents[0]
-        if "Economics" in dept:
-            name = profiles[n].find_all("span", class_="faculty_name")[0].contents[0]
-            job = profiles[n].find_all("span", class_="faculty_title")[0].contents[0]
-            output.append([school,name, job])
 
-    return output
+        if "Economics" in dept:
+			##########
+            faculty_info = []
+            full_name = profiles[n].find_all("span", class_="faculty_name")[0].contents[0]
+            name_separated = full_name.split(" ")
+            simplified_name = name_separated[0] + " " + name_separated[-1]
+
+			#########
+            job = profiles[n].find_all("span", class_="faculty_title")[0].contents[0]
+            faculty_info.append("UT Austin")
+            faculty_info.append(simplified_name)
+            faculty_info.append(job)
+            UT_faculty.append(faculty_info)
+
+    return UT_faculty
+
 
 
 def scrape_uchicago():
