@@ -15,7 +15,7 @@ def clean_titles():
     """
     Runs through the scraped data and filters through faculty titles.
     Keep "Professor", "Associate Professor", and "Assistant Professor" titles only.
-    Returns a list of lists, which includes ["school", "prof's name", "title"]
+    Returns a list of lists, which includes [["school", "prof's name", "title"], ...]
     """
     data = scrape_all()
 
