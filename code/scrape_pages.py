@@ -256,6 +256,28 @@ def scrape_brown():
 
     return output
 
+def scrape_u_wisc():
+    soup = get_soup("https://econ.wisc.edu/faculty/")
+
+    wisc_faculty = []
+    
+    for i in range(57): #57 econ faculty members
+        faculty_info=[]
+        faculty = soup.find_all("div", class_="faculty-member column small-12 medium-3")[i]
+        name = faculty.find("h3", class_="faculty-name").text.strip()
+        position = faculty.find("p", class_="position-title")
+
+        if position == None:
+            continue
+        else:
+            faculty_info.append("University of Wisconsin-Madison")
+            faculty_info.append(name)
+            faculty_info.append(position.text[16:])
+
+            wisc_faculty.append(faculty_info)
+
+    return(wisc_faculty)
+
 
 
 def scrape_all():
@@ -276,7 +298,8 @@ def scrape_all():
     nyu = scrape_nyu()
     columbia = scrape_columbia()
     brown = scrape_brown()
+    u_wisc = scrape_u_wisc()
 
-    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu + columbia + brown
+    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu + columbia + brown + u_wisc
 
     return output
