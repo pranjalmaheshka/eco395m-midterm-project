@@ -144,11 +144,11 @@ def scrape_northwestern():
     return northwestern 
 
 def scrape_stanford():
-     """Takes the Stanford University faculty url and returns faculty name and their roles in  a list of lists."""
+    """Takes the Stanford University faculty url and returns faculty name and their roles in  a list of lists."""
 
     url = "https://economics.stanford.edu/people/faculty"
     soup = get_soup(url)
-        
+
     names = soup.find_all("span", {"class": "field-content hb-subtitle"})
 
     facnames = []
@@ -179,7 +179,8 @@ def scrape_stanford():
     return stanford
 
 def scrape_nyu():
-     """Takes the New York University faculty url and returns faculty name and their roles in  a list of lists."""
+    """Takes the New York University faculty url and returns faculty name and their roles in  a list of lists."""
+
     url = "https://as.nyu.edu/departments/econ/faculty.html"
     soup = get_soup(url)
 
@@ -192,7 +193,6 @@ def scrape_nyu():
         facnames.append(allfac)
 
     titles = soup.find_all("div", {"class": "book-box__author"})
-
     factitles = []
 
     for i in titles: 
@@ -200,7 +200,6 @@ def scrape_nyu():
         factitles.append(alltitles)
 
     nyu = []
-
     school = "New York University"
     list_nyu = len(factitles)
 
@@ -211,7 +210,8 @@ def scrape_nyu():
         temp.append(factitles[i])
         nyu.append(temp)
 
-    nyu
+    return nyu
+
 
 def scrape_all():
     """
@@ -232,4 +232,4 @@ def scrape_all():
 
     output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu
 
-    return output
+    return output 
