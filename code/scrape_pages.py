@@ -68,13 +68,10 @@ def scrape_utaustin():
         dept = profiles[n].find_all("span", class_="faculty_dept")[0].contents[0]
 
         if "Economics" in dept:
-			##########
             faculty_info = []
             full_name = profiles[n].find_all("span", class_="faculty_name")[0].contents[0]
             name_separated = full_name.split(" ")
             simplified_name = name_separated[0] + " " + name_separated[-1]
-
-			#########
             job = profiles[n].find_all("span", class_="faculty_title")[0].contents[0]
             faculty_info.append("UT Austin")
             faculty_info.append(simplified_name)
@@ -82,7 +79,6 @@ def scrape_utaustin():
             UT_faculty.append(faculty_info)
 
     return UT_faculty
-
 
 
 def scrape_uchicago():
@@ -129,6 +125,7 @@ def scrape_duke():
 
     return duke
 
+
 def scrape_northwestern():
     """Takes the Northwestern University faculty url and returns faculty name and their roles in  a list of lists."""
 
@@ -154,6 +151,7 @@ def scrape_northwestern():
         temp.append(nw_proftitles[i])
         northwestern.append(temp)
     return northwestern
+
 
 def scrape_stanford():
     """Takes the Stanford University faculty url and returns faculty name and their roles in  a list of lists."""
@@ -190,6 +188,7 @@ def scrape_stanford():
 
     return stanford
 
+
 def scrape_nyu():
     """Takes the New York University faculty url and returns faculty name and their roles in  a list of lists."""
 
@@ -225,8 +224,8 @@ def scrape_nyu():
     return nyu
 
 
-
 def scrape_columbia():
+    """Takes the Columbia University faculty url and returns faculty name and their roles in  a list of lists."""
     soup= get_soup("https://econ.columbia.edu/faculty/")
     div_tag= soup.find_all("div", class_="tshowcase-isotope-wrap")[0]
     profiles= div_tag.find_all("div", class_= "tshowcase-box-info ts-align-left")
@@ -239,7 +238,9 @@ def scrape_columbia():
 
     return output
 
+
 def scrape_brown():
+    """Takes the Brown University faculty url and returns faculty name and their roles in  a list of lists."""
     school="Brown"
     soup= get_soup("https://economics.brown.edu/people/faculty")
     ul_tag = soup.find_all("ul", class_ = "people_items component_items")[0]
@@ -256,7 +257,9 @@ def scrape_brown():
 
     return output
 
+
 def scrape_u_wisc():
+    """Takes the University of Wisconsin-Madison faculty url and returns faculty name and their roles in  a list of lists."""
     soup = get_soup("https://econ.wisc.edu/faculty/")
 
     wisc_faculty = []
@@ -279,6 +282,54 @@ def scrape_u_wisc():
     return(wisc_faculty)
 
 
+def scrape_yale():
+    """Takes the Yale University faculty url and returns faculty name and their roles in  a list of lists."""
+    yale_faculty = []
+
+    for i in range(0,4): #There are 4 pages of faculty
+        html = requests.get("https://economics.yale.edu/people-economics?viewsreference[enabled_settings][argument]=argument&person_type=2&interest=All&page=" + str(i)).text
+        soup = BeautifulSoup(html, "html.parser")
+
+        
+        faculty_name = soup.find_all("div", class_="node-teaser__heading")
+        faculty_title = soup.find_all("div", class_="node-teaser__professional-title")
+
+        if i==3: #Last page only has 7 faculty members listed
+            names = []
+            titles = []
+            for i in range(0,7): 
+                name = faculty_name[i].find_all("span")
+                for x in name:
+                    names.append(x.text)
+            for x in faculty_title:
+                titles.append(x.text.strip())
+
+            for i in range(0,7):
+                faculty_info = []
+                faculty_info.append("Yale")
+                faculty_info.append(names[i])
+                faculty_info.append(titles[i])
+                yale_faculty.append(faculty_info)
+        else:
+            names = []
+            titles = []
+
+            for i in range(0,15): #15 entries per page
+                name = faculty_name[i].find_all("span")
+                for x in name:
+                    names.append(x.text)
+            for x in faculty_title:
+                titles.append(x.text.strip())
+
+            for i in range(0,15):
+                faculty_info = []
+                faculty_info.append("Yale")
+                faculty_info.append(names[i])
+                faculty_info.append(titles[i])
+                yale_faculty.append(faculty_info)
+
+    return yale_faculty
+
 
 def scrape_all():
     """
@@ -299,7 +350,10 @@ def scrape_all():
     columbia = scrape_columbia()
     brown = scrape_brown()
     u_wisc = scrape_u_wisc()
+    yale = scrape_yale()
 
-    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu + columbia + brown + u_wisc
+    output = princeton + boston_u + harvard + utaustin + uchicago + duke + northwestern + stanford + nyu + columbia + brown + u_wisc + yale
 
     return output
+
+    
