@@ -3,7 +3,8 @@ from main import get_h_index
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv('../artifacts/scores.csv')
+data = pd.read_csv('../eco395m-midterm-project/artifacts/scores.csv', encoding='utf8')
+
 
 df = pd.DataFrame(
     data,
@@ -11,14 +12,15 @@ df = pd.DataFrame(
         "university",
         "name",
         "title",
-        "h_index",
-        "h_index2017",
         "citations",
         "citations2017",
+        "h_index",
+        "h_index2017",
+
     ],
 )
-df[["h_index", "h_index2017", "citations", "citations2017"]] = df[
-    ["h_index", "h_index2017", "citations", "citations2017"]
+df[["citations", "citations2017","h_index", "h_index2017"]] = df[
+    ["citations", "citations2017","h_index", "h_index2017"]
 ].apply(pd.to_numeric)
 
 
