@@ -41,9 +41,8 @@
 Looking at average h-index values across universities, Harvard University leads the pack at an astounding 50 while Duke and UT Austin trail at 18 each. The universities analyzed here have some professors with extremely high h-index values like 233; there are 14 professors with h-index values over 100. Undoubtedly, some professors conduct impressive research. We do not observe any similar values for assistant or associate professors. Assistant Professors are often just starting out their careers, so we see minimum values of 0. The minimum h-index values 
 Interestingly enough, the minimum h-index values for a Professor is 4 and for an Associate Professor is 5. Professors see the largest variance in the data, and likely individual university policies play huge roles in determining requirements for promotions. 
 
-![Plot 1](https://github.com/pranjalmaheshka/eco395m-midterm-project/blob/31405e433e7cfe55ee356cf733ea1d18de3b8ea5/analysis/Avghindex.jpeg)
-
-![Plot 2](https://github.com/pranjalmaheshka/eco395m-midterm-project/blob/31405e433e7cfe55ee356cf733ea1d18de3b8ea5/analysis/boxplottitle.jpeg)
+  <img src="https://github.com/pranjalmaheshka/eco395m-midterm-project/blob/31405e433e7cfe55ee356cf733ea1d18de3b8ea5/analysis/Avghindex.jpeg" width="700"/>
+  <img src="https://github.com/pranjalmaheshka/eco395m-midterm-project/blob/31405e433e7cfe55ee356cf733ea1d18de3b8ea5/analysis/boxplottitle.jpeg" width="700"/>
 
  <h3> Conclusion </h3> 
   Professors have higher h-index values on average than assistant or associate professors which corresponds to greater contributions to academic discourse. There is a great divide between tenured professors and non-tenured professors. There are lesser discrepancies between Assistant and Associate Professors. We see that the expectation of an h-index for different professors were underestimates. Overall, there is great scope for further analysis including looking at h-index values at the time of promotion, h-index value distributions based on sub-field in economics, and simply looking at a greater sample size of universities and majors. 
