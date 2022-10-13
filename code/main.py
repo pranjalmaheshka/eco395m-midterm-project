@@ -72,7 +72,7 @@ def get_h_index():
         sep_name = name.replace(" ", "+")
 
         #Get url of the individual faculty member's google scholar page
-        soup = get_soup("https://scholar.google.com/citations?view_op=search_authors&mauthors=" + sep_name + "&hl=en&oi=ao")
+        soup = get_soup2("https://scholar.google.com/citations?view_op=search_authors&mauthors=" + sep_name + "&hl=en&oi=ao")
         search_results = soup.find_all("div", class_="gsc_1usr") #individual entries
 
         found_indicator = 0
@@ -85,7 +85,7 @@ def get_h_index():
                     break
 
         if found_indicator == 1:
-            soup = get_soup("https://scholar.google.com/"+ matched_faculty.find("div", class_="gs_ai gs_scl gs_ai_chpr").a["href"])
+            soup = get_soup2("https://scholar.google.com/"+ matched_faculty.find("div", class_="gs_ai gs_scl gs_ai_chpr").a["href"])
             data_tag = soup.find_all("td", class_="gsc_rsb_std")
 
             individual_info.append(data_tag[0].text) #citations all
