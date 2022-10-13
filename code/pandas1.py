@@ -19,6 +19,7 @@ df = pd.DataFrame(
 
     ],
 )
+
 df[["citations", "citations2017","h_index", "h_index2017"]] = df[
     ["citations", "citations2017","h_index", "h_index2017"]
 ].apply(pd.to_numeric)
@@ -26,24 +27,21 @@ df[["citations", "citations2017","h_index", "h_index2017"]] = df[
 
 # shows how many of each title the universities have
 final0 = df.groupby(["university", "title"]).size()
-print("how many of each title the universities have")
-print(final0)
+
 # average indexes by university
 final1 = (
     df.groupby(["university"])
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
-print("average indexes by university")
-print(final1)
+
 # average indexes by title
 final2 = (
     df.groupby(["title"])
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
-print("average indexes by titles")
-print(final2)
+
 
 
 # average indexes by both uni and title
@@ -52,8 +50,7 @@ final3 = (
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
-print("average indexes by both uni and title")
-print(final3)
+
 
 
 #Max citations per school
@@ -62,17 +59,15 @@ maxcite = (
     .max(numeric_only=True)
     .sort_values(by=["citations"], ascending=False)
 )
-print("max citation per school")
-print(maxcite)
 
-#Max h_index per school
+
+#Max h_index per university
 maxh = (
     df.groupby(["university"])
     .max(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
-print("max h_index per school")
-print(maxh)
+
 
 
 #Max citations by title
@@ -81,8 +76,7 @@ maxhtitle = (
     .max(numeric_only=True)
     .sort_values(by=["citations"], ascending=False)
 )
-print("max citation by title")
-print(maxhtitle)
+
 
 #Max h_index by title
 maxhtitle = (
@@ -90,19 +84,16 @@ maxhtitle = (
     .max(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
-print("max h_index by title")
-print(maxhtitle)
 
-#Min citation by title and uni
+
+#max citation by title and uni
 mincite = (
     df.groupby(["university","title"])
     .max(numeric_only=True)
     .sort_values(by=["citations"], ascending=False)
 )
-print("min h_index by title")
-print(mincite)
 
-#Min h_index uni
+#Min h_index title
 minh = (
     df.groupby(["title"])
     .min(numeric_only=True)
