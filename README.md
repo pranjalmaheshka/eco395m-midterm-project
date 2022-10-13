@@ -5,6 +5,13 @@
   
 
   
+Introduction
+This project analyzes the relationship between professor rankings (assistant professors, associate professors, professors) and their research publications (measured by the h-index and the citations their papers have received). The goal is to determine a relationship between their current positions (tenure or non-tenure) as professors and research publications and their contribution to the academic discourse. Does the quantity of publications outweight the quaklity of publications when considering tenure. Do tenured professors continue to publish high quality papers unencumbered by job security concerns?
+  
+Sources of data include faculty in some of the top 25 graduate Economics departments across the United States. The rankings for the highest ranked departments were obtained from usnews.com. Only full-time faculty were considered: lecturers, professors of instruction, visiting professors, and professors emeriti were excluded. Some of these professors could be teaching and conduting research actively but we have excluded them for simplicity and consistency in our analysis. The final list of universities considered were: Harvard University, Princeton University, University of Chicago, New York University, Stanford University, The Pennsylvania State University (Penn State), Yale University, Northwestern University, Duke University, Columbia University, Brown University, Boston University, University of Wisonsin-Madison, University of Texas at Austin. For each unversity the page showing the list of faculty was scraped for information (name of professor and title) (individual links can be foound the in the code/scrape_pages.py file). Only 12 universities have been considered here but a more comprerensive analysis could be conducted by considering all top 25 universities.
+ 
+After determining aggregating university level data for economics professors, the h-index and citation values were scraped by Google Scholar. Each professors name was searched and the correct profile was selected by accounting for the current affiliation (current university where they work). Four values were pulled: the current and 2017 values for h-indexes and citations. 
+  
   1. Introduction: what we studying? why are we studying it? 
      1. Academia focuses on research: but to what degree does quantity of publications weigh more than quality? 
      2. Tenure is the grand goal: security + freedom to conduct own research as they see fit. What stands in their way? 
