@@ -5,6 +5,7 @@ from common import get_soup
 from scrape_pages import scrape_all
 from search_keys import search_keys
 
+
 colleges = [
     'harvard','princeton','uchicago',
     'stanford','pennstate','yale',
@@ -119,11 +120,12 @@ def get_h_index():
 
     for i in faculty_info:
         print(i)
-
+    return 
+    
 def tabulate_data(prof_info):
     return None
 
-get_h_index()
+#get_h_index()
 
 '''
 def run_main()
