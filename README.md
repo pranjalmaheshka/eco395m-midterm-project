@@ -6,11 +6,12 @@
 
  <h3> Introduction </h3> 
  
- This project analyzes the relationship between professor rankings (assistant professors, associate professors, professors) and their research publications (measured by the h-index and the citations their papers have received). The goal is to determine a relationship between their current positions (tenure or non-tenure) as professors and research publications and their contribution to the academic discourse. Does the quantity of publications outweigh the quality of publications when considering tenure. Do tenured professors continue to publish high quality papers unencumbered by job security concerns?
+ This project analyzes the relationship between professor rankings (Assistant Professors, Associate Professors, Professors) and their research publications (measured by the h-index and the citations their papers have received). The goal is to determine a relationship between their current positions (tenure or non-tenure) as professors and research publications and their contribution to the academic discourse. Does the quantity of publications outweigh the quality of publications when considering tenure? Do tenured professors continue to publish high quality papers unencumbered by job security concerns?
   
  <h3> Sources of Data </h3> 
  
- Sources of data include faculty in some of the top 25 graduate Economics departments across the United States. The rankings for the highest ranked departments were obtained from usnews.com. Only full-time faculty were considered: lecturers, professors of instruction, visiting professors, and professors’ emeriti were excluded. Some of these professors could be teaching and conducting research actively but we have excluded them for simplicity and consistency in our analysis. The final list of universities considered were: 
+ Sources of data include faculty in some of the top 25 graduate Economics departments across the United States. The rankings for the highest ranked departments were obtained from [U.S. News](usnews.com). Only full-time faculty were considered: lecturers, professors of instruction, visiting professors, and professors’ emeriti were excluded. Some of these professors could be teaching and conducting research actively but we have excluded them for simplicity and consistency in our analysis. The final list of universities considered were: 
+  
   1. Harvard University
   2. Princeton University
   3. University of Chicago
