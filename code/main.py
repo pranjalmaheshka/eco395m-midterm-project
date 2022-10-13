@@ -54,24 +54,9 @@ def clean_titles():
 
 
 
-def get_data():
-    '''Getting a final data as lists of lists and converting it to a Pandas df.'''
-
-    raw_data = scrape_all()
-
-    # send raw data to h-index file and add info
-
-    raw_df = pd.DataFrame(raw_data, columns = ['University', 'Professor', 'Title'])
-
-    # final df needs to have relevant title + Google Scholar info
-
-    #print(raw_df)
-    return None
-#get_data()
-
 def get_h_index():
     '''Extract h index, h index since 2017, citations all, citations since 2017 for each faculty member'''
-    faculty = scrape_all()
+    faculty = clean_titles()
     keywords = search_keys()
 
     faculty_info = [] #[name, title, h index all, h index since 2017, citations all, citations since 2017]
@@ -119,9 +104,7 @@ def get_h_index():
             individual_info.append("")
             faculty_info.append(individual_info)
 
-    for i in faculty_info:
-        print(i)
-    return None
+    return faculty_info
 
 def write_data_to_csv(data, path):
     """Write the data to the csv.    """
