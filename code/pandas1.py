@@ -3,7 +3,7 @@ from main import get_h_index
 import matplotlib.pyplot as plt
 
 
-# data = pd.read_csv('scores.csv')
+# data = pd.read_csv('../artifacts/scores.csv')
 data = [
     ["Boston University", "Kevin Lang", "Professor", "12402", "4363", "52", "29"],
     [
