@@ -3,7 +3,7 @@ from main import get_h_index
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv('../eco395m-midterm-project/artifacts/scores.csv', encoding = 'latin')
+data = pd.read_csv("../eco395m-midterm-project/artifacts/scores.csv", encoding = "latin")
 
 
 df = pd.DataFrame(
