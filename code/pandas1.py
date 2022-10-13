@@ -49,7 +49,7 @@ final1 = (
 
 # average indexes by title
 final2 = (
-    df.groupby(["university"])
+    df.groupby(["title"])
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
