@@ -4,6 +4,7 @@ import pandas as pd
 from common import get_soup
 from scrape_pages import scrape_all
 from search_keys import search_keys
+import csv
 
 
 colleges = [
