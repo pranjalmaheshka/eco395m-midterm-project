@@ -120,18 +120,21 @@ def get_h_index():
 
     for i in faculty_info:
         print(i)
-    return 
-    
-def tabulate_data(prof_info):
     return None
 
-#get_h_index()
+def write_data_to_csv(data, path):
+    """Write the data to the csv.    """
+    # [name, title, h index all, h index since 2017, citations all, citations since 2017]
+    headers = ["university", "name","title", "h_index", "h_index2017", "citations", "citations2017"]
+    with open(path, "w+", newline="") as out_file:
+        write = csv.writer(out_file)
+        write.writerow(headers)
+        write.writerows(data)
 
-'''
-def run_main()
 
 
 if __name__ == "__main__":
-    run)main()
-    # code for testing
-'''
+    data = get_h_index()
+    OUTPUT_DIR = "artifacts"
+    OUTPUT_PATH = os.path.join(OUTPUT_DIR, "scores.csv")
+    write_data_to_csv(data, OUTPUT_PATH)
