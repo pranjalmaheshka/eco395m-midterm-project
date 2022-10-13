@@ -49,7 +49,7 @@ def clean_titles():
 
 
 def get_h_index():
-    '''Extract h-index, h-index since 2017, citations all, citations since 2017 for each faculty member.'''
+    """Extract h-index, h-index since 2017, citations all, citations since 2017 for each faculty member."""
     faculty = clean_titles()
     keywords = search_keys()
     
