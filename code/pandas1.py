@@ -3,7 +3,7 @@ from main import get_h_index
 import matplotlib.pyplot as plt
 
 
-data = pd.read_csv('../eco395m-midterm-project/artifacts/scores.csv', encoding='utf8')
+data = pd.read_csv('../eco395m-midterm-project/artifacts/scores.csv', encoding = 'latin')
 
 
 df = pd.DataFrame(
@@ -26,20 +26,25 @@ df[["citations", "citations2017","h_index", "h_index2017"]] = df[
 
 # shows how many of each title the universities have
 final0 = df.groupby(["university", "title"]).size()
-
+print("how many of each title the universities have")
+print(final0)
 # average indexes by university
 final1 = (
     df.groupby(["university"])
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
-
+print("average indexes by university")
+print(final1)
 # average indexes by title
 final2 = (
     df.groupby(["title"])
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
+print("average indexes by titles")
+print(final2)
+
 
 # average indexes by both uni and title
 final3 = (
@@ -47,9 +52,74 @@ final3 = (
     .mean(numeric_only=True)
     .sort_values(by=["h_index"], ascending=False)
 )
+print("average indexes by both uni and title")
+print(final3)
+
+
+#Max citations per school
+maxcite = (
+    df.groupby(["university"])
+    .max(numeric_only=True)
+    .sort_values(by=["citations"], ascending=False)
+)
+print("max citation per school")
+print(maxcite)
+
+#Max h_index per school
+maxh = (
+    df.groupby(["university"])
+    .max(numeric_only=True)
+    .sort_values(by=["h_index"], ascending=False)
+)
+print("max h_index per school")
+print(maxh)
+
+
+#Max citations by title
+maxhtitle = (
+    df.groupby(["title"])
+    .max(numeric_only=True)
+    .sort_values(by=["citations"], ascending=False)
+)
+print("max citation by title")
+print(maxhtitle)
+
+#Max h_index by title
+maxhtitle = (
+    df.groupby(["title"])
+    .max(numeric_only=True)
+    .sort_values(by=["h_index"], ascending=False)
+)
+print("max h_index by title")
+print(maxhtitle)
+
+#Min citation by title and uni
+mincite = (
+    df.groupby(["university","title"])
+    .max(numeric_only=True)
+    .sort_values(by=["citations"], ascending=False)
+)
+print("min h_index by title")
+print(mincite)
+
+#Min h_index uni
+minh = (
+    df.groupby(["title"])
+    .min(numeric_only=True)
+    .sort_values(by=["h_index"], ascending=False)
+)
+
+
+# number of profs with h_index over 100
+over100 = df[df["h_index"]>=100]
+
 
 # barplot showing average indexes by uni and title
 final3["h_index"].unstack().plot(
-    kind="bar", rot=30, title="Avg. H-Index Score by School & Title"
+    kind="bar", rot=25, title="Avg. H-Index Score by School & Title"
 )
+plt.show()
+
+axs=df.boxplot(column=["h_index"], by=["title"])
+axs.set_xlabel("Title")
 plt.show()
