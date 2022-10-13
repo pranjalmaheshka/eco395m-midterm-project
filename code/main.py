@@ -1,18 +1,12 @@
 ## Main file
 import os
 import pandas as pd
-from common import get_soup
+from common import get_soup2
 from scrape_pages import scrape_all
 from search_keys import search_keys
 import csv
 
 
-colleges = [
-    'harvard','princeton','uchicago',
-    'stanford','pennstate','yale',
-    'northwestern','duke','umd',
-    'hopkins','bu','wisconsin','uta'
-    ]
 
 def clean_titles():
     """
@@ -105,6 +99,8 @@ def get_h_index():
             faculty_info.append(individual_info)
 
     return faculty_info
+
+
 
 def write_data_to_csv(data, path):
     """Write the data to the csv.    """

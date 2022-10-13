@@ -18,7 +18,7 @@ def get_soup(url):
 def get_soup2(url):
 
     """Takes a URL and returns a BeautifulSoup() instance representing the HTML of the page."""
-    HEADERS = [
+    headers_list = [
         {
             "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
             "Accept-Encoding": "gzip, deflate, br",
@@ -95,7 +95,7 @@ def get_soup2(url):
     ]
 
     HEADERS = random.choice(headers_list)
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=HEADERS)
     html = response.text
     soup = BeautifulSoup(html, "html.parser")
 
