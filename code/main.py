@@ -109,7 +109,7 @@ def get_h_index():
 def write_data_to_csv(data, path):
     """Write the data to the csv.    """
     # [name, title, h index all, h index since 2017, citations all, citations since 2017]
-    headers = ["university", "name","title", "h_index", "h_index2017", "citations", "citations2017"]
+    headers = ["university", "name","title", "citations", "citations2017", "h_index", "h_index2017"]
     with open(path, "w+", newline="") as out_file:
         write = csv.writer(out_file)
         write.writerow(headers)
