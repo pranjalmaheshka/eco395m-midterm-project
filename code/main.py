@@ -1,4 +1,4 @@
-## Main file
+## Main file:
 import os
 import pandas as pd
 from common import get_soup2
@@ -49,11 +49,12 @@ def clean_titles():
 
 
 def get_h_index():
-    '''Extract h index, h index since 2017, citations all, citations since 2017 for each faculty member'''
+    '''Extract h-index, h-index since 2017, citations all, citations since 2017 for each faculty member.'''
     faculty = clean_titles()
     keywords = search_keys()
-
-    faculty_info = [] #[name, title, h index all, h index since 2017, citations all, citations since 2017]
+    
+    #includes [name, title, h-index all, h-index since 2017, citations all, citations since 2017]
+    faculty_info = [] 
 
     for i in faculty:
         individual_info = []
@@ -65,13 +66,15 @@ def get_h_index():
         individual_info.append(title)
         sep_name = name.replace(" ", "+")
 
-        #Get url of the individual faculty member's google scholar page
+        #Get URL of the individual faculty member's google scholar page: 
         soup = get_soup2("https://scholar.google.com/citations?view_op=search_authors&mauthors=" + sep_name + "&hl=en&oi=ao")
-        search_results = soup.find_all("div", class_="gsc_1usr") #individual entries
+
+        #Individual Entries
+        search_results = soup.find_all("div", class_="gsc_1usr") 
 
         found_indicator = 0
         for i in search_results:
-            individual_result = i.find("div", class_="gs_ai_aff").text #current affiliation
+            individual_result = i.find("div", class_="gs_ai_aff").text 
             for x in keywords[school]:
                 if x in individual_result:
                     found_indicator = 1
@@ -82,11 +85,17 @@ def get_h_index():
             soup = get_soup2("https://scholar.google.com/"+ matched_faculty.find("div", class_="gs_ai gs_scl gs_ai_chpr").a["href"])
             data_tag = soup.find_all("td", class_="gsc_rsb_std")
 
-            individual_info.append(data_tag[0].text) #citations all
-            individual_info.append(data_tag[1].text) #citations since 2017
+            #citations all
+            individual_info.append(data_tag[0].text) 
 
-            individual_info.append(data_tag[2].text) #h index all
-            individual_info.append(data_tag[3].text) #h index since 2017
+            #citations since 2017
+            individual_info.append(data_tag[1].text) 
+
+            #h-index all
+            individual_info.append(data_tag[2].text) 
+
+            #h-index since 2017
+            individual_info.append(data_tag[3].text) 
 
             faculty_info.append(individual_info)
 
@@ -103,8 +112,8 @@ def get_h_index():
 
 
 def write_data_to_csv(data, path):
-    """Write the data to the csv.    """
-    # [name, title, h index all, h index since 2017, citations all, citations since 2017]
+    """Write the data to the csv file."""
+
     headers = ["university", "name","title", "citations", "citations2017", "h_index", "h_index2017"]
     with open(path, "w+", newline="") as out_file:
         write = csv.writer(out_file)
