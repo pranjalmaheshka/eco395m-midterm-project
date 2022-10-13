@@ -101,7 +101,7 @@ def scrape_uchicago():
 def scrape_duke():
     """Takes the Duke University faculty url and returns faculty name and their roles in  a list of lists."""
 
-    duke_url1 = 'https://econ.duke.edu/people/other-faculty/regular-rank-faculty'
+    duke_url1 = "https://econ.duke.edu/people/other-faculty/regular-rank-faculty"
     duke_profs = get_soup(duke_url1) # Regular rank faculty
 
     duke_profurls = []
@@ -109,7 +109,7 @@ def scrape_duke():
     duke_proftitles = []
 
     for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-profile-url-1"):
-        for name in tag.find_all('div', class_='h4'):
+        for name in tag.find_all("div", class_="h4"):
             duke_profnames.append(name.a.text)
 
     for tag in duke_profs.find_all("div", class_ = "views-field views-field-field-appointment-titles"):
@@ -129,18 +129,18 @@ def scrape_duke():
 def scrape_northwestern():
     """Takes the Northwestern University faculty url and returns faculty name and their roles in  a list of lists."""
 
-    nw_url = 'https://economics.northwestern.edu/people/faculty/index.html'
+    nw_url = "https://economics.northwestern.edu/people/faculty/index.html"
     nw_profs = get_soup(nw_url) # Faculty (minus Emeritus + Instructional)
 
     nw_profnames = []
     nw_proftitles = []
 
     for tag in nw_profs.find_all("div", class_ = "people-content"):
-        for name in tag.find_all('h3'):
+        for name in tag.find_all("h3"):
             nw_profnames.append(name.a.text)
 
     for tag in nw_profs.find_all("div", class_ = "people-content"):
-        for title in tag.find_all('p', class_="title"):
+        for title in tag.find_all("p", class_="title"):
             nw_proftitles.append(title.text)
 
     northwestern = []
@@ -334,7 +334,7 @@ def scrape_all():
     Scrapes all universities examined, returning a list of lists containing faculty's name and their role.
 
     example output:
-    output = [['University A', 'Jane Doe', 'Professor'], ['University A', 'John Smith', 'Associate Professor'], ...]
+    output = [["University A", "Jane Doe", "Professor"], ["University A", "John Smith", "Associate Professor"], ...]
     """
     princeton = scrape_princeton()
     boston_u = scrape_boston()
